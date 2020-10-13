@@ -11,7 +11,6 @@ const DragDrop = ({data}) => {
         dragItem.current = params;
         dragNode.current = e.target;
         dragNode.current.addEventListener("dragend", handleDragEnd)
-        dragNode.current.addEventListener("touchend", handleDragEnd)
         setTimeout(() => {
             setDragging(true);
         }, 0);
@@ -35,7 +34,6 @@ const DragDrop = ({data}) => {
         console.log("End dragging");
         setDragging(false);
         dragNode.current.removeEventListener("dragend", handleDragEnd);
-        dragNode.current.removeEventListener("touchend", handleDragEnd);
         dragItem.current = null;
         dragNode.current = null;
     }
@@ -62,7 +60,6 @@ const DragDrop = ({data}) => {
                         grp.items.map((item, itemI) => (
                             <div draggable key={item} 
                             onDragStart={ e => {handleDragStart(e, {grpI, itemI})}}
-                            onTouchStart={ e => {handleDragStart(e, {grpI, itemI})}}
                             onDragEnter={dragging?e => {handleDragEnter(e, {grpI, itemI})}:null}
                             className={dragging? getStyles({grpI, itemI}):"dnd-item"}>
                                 Item {item}
